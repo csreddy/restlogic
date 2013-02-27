@@ -1,0 +1,50 @@
+<%- model_class = Api -%>
+<div class="page-header">
+  <h4><%=t '.title', :default => model_class.model_name.human %></h4>
+</div>
+
+
+	<%= form_tag( "/api/home", :method => "get", :remote => true,:id => 'api_form' , :class => 'dl-horizontal') do %>
+	
+
+	  <%= select("http","method", %w[GET POST PUT DELETE HEAD], {:include_blank => false}) %>
+	  
+	 <div class="control-group">
+		 <label class="control-label" for="endpoint">
+			 <%= label_tag(:endpoint, "api:") %>
+		 </label>
+	  <div class="controls">
+	        <%= text_field_tag :endpoint, nil, :placeholder => "Endpoint"  %>
+	      </div>
+	  </div>
+		  
+	
+	  <%= label_tag(:rparam, "Required parameters:") %>
+	  <div id="rpm_1" class="rparam">
+	  <%= text_field_tag(:rparams_1, nil,  :placeholder => "Required Parameter") %> 
+	   <%= select_tag("rparam_values_1", %w[].to_s, :multiple => true, :include_blank => true) %> 
+	   <%= text_field_tag(:add_rparam_value_1, nil, :placeholder => "Enter value", :class => "value_text_field") %> 
+	   <%= button_tag "Add value", :class => "add_value_btn", :id => "add_rparam_value_btn_1" %><br/>
+	    </div>
+	  <%= button_to_function "Add Reqd param", "addReqdParam()" , :id => "add_rparam" %><br/>
+	  <br/>
+      <%= label_tag(:oparam, "Optional Parameters:") %>
+	  <div id="opm_1" class="oparam">
+	   <%= text_field_tag(:oparams_1, nil,  :placeholder => "Optional Parameter") %> 
+	    <%= select_tag("oparam_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
+		<%= text_field_tag(:add_oparam_value_1, nil,  :placeholder => "Enter value", :class => "value_text_field") %> 
+		 <%= button_tag "Add value", :class => "add_value_btn", :id => "add_oparam_value_btn_1" %><br/>
+	 </div> 
+	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam" %>
+	 
+	
+
+<div class="form-actions">
+<%= submit_tag("Run")  %>
+</div>
+	<% end %>
+	
+	<div class="span8">
+		<div id="results"></div>
+	</div>
+	<%#= render :partial => 'result' %>

@@ -1,0 +1,12 @@
+<div class="span8">
+	<div id="results"></div>
+      Count: <%= @output.size %><br/>	
+Required Params : <%=  @r %> <br/>
+Optional Params : <%=  @o %>
+<pre>
+<%= @method[:method] %> : <%= @endpoint %> 
+	<% @output.each do |o| %>
+          <%= @endpoint %>  <%= o %>
+	   <% end %>
+	</pre>
+</div>
