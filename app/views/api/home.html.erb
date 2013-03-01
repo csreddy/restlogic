@@ -26,7 +26,7 @@
 	   <%= text_field_tag(:add_rparam_value_1, nil, :placeholder => "Enter value", :class => "value_text_field") %> 
 	   <%= button_tag "Add value", :class => "add_value_btn", :id => "add_rparam_value_btn_1" %><br/>
 	    </div>
-	  <%= button_to_function "Add Reqd param", "addReqdParam()" , :id => "add_rparam" %><br/>
+	  <%= button_to_function "Add Reqd param", "addReqdParam()" , :id => "add_rparam" , :class => 'btn btn-inverse' %><br/>
 	  <br/>
       <%= label_tag(:oparam, "Optional Parameters:") %>
 	  <div id="opm_1" class="oparam">
@@ -35,12 +35,12 @@
 		<%= text_field_tag(:add_oparam_value_1, nil,  :placeholder => "Enter value", :class => "value_text_field") %> 
 		 <%= button_tag "Add value", :class => "add_value_btn", :id => "add_oparam_value_btn_1" %><br/>
 	 </div> 
-	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam" %>
+	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam", :class => 'btn btn-inverse' %>
 	 
 	
 
 <div class="form-actions">
-<%= submit_tag("Run")  %>
+<%= submit_tag("Run", :class => 'btn btn-primary')  %>
 </div>
 	<% end %>
 	

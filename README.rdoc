@@ -1,2 +1,3 @@
 == RESTlogic
 Returns all possible combination of paramaters (required and optional) and their values for test coverage 
+[**** App is under construction ****]
