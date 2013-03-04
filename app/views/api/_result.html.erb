@@ -1,12 +1,33 @@
 <div class="span8">
-	<div id="results"></div>
-      Count: <%= @output.size %><br/>	
-Required Params : <%=  @r %> <br/>
-Optional Params : <%=  @o %>
-<pre>
-<%= @method[:method] %> : <%= @endpoint %> 
-	<% @output.each do |o| %>
+	<div id="results"></div>Count: <%= @r_output.size + @reqd_and_opt_results.size %><br>
+	Required Params : <%=  @r.to_s %><br>
+	Optional Params : <%=  @o.to_s %><br>
+	<pre>
+    <strong>Required Params combinations</strong>
+	Count: <%= @r_output.size %><br>
+<%= @method[:method] %> 
+    <% @r_output.each do |o| %>
           <%= @endpoint %>  <%= o %>
-	   <% end %>
-	</pre>
+       <% end %>
+    
+</pre>
+<!--	<pre>
+        <strong>Optional Params combinations</strong>
+    <%= @method[:method] %> : <%= @endpoint %> 
+        <% @o_output.each do |o| %>
+              <%= @endpoint %>  <%= o.to_s.gsub("[", "").gsub("]", "").gsub("\"", "") %>
+           <% end %>
+        
+</pre>
+-->
+	<pre>
+    <strong>Required + Optional Params combinations</strong>    
+	Count: <%= @reqd_and_opt_results.size %><br>
+<%= @method[:method] %> 
+	<% @reqd_and_opt_results.each do |r| %>
+          <%= @endpoint %> <%= r.to_s.gsub("[", "").gsub("]", "").gsub("\"", "") %>
+            <% end %>
+        
+</pre>
+
 </div>
