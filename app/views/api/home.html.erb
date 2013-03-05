@@ -35,9 +35,15 @@
 		<%= text_field_tag(:add_oparam_value_1, nil,  :placeholder => "Enter value", :class => "value_text_field") %> 
 		 <%= button_tag "Add value", :class => "add_value_btn", :id => "add_oparam_value_btn_1" %><br/>
 	 </div> 
-	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam", :class => 'btn btn-inverse' %>
-	 
-	
+	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam", :class => 'btn btn-inverse' %><br/><br/>
+	 Request/Response Header:
+<div id="header_1" class="header">
+  <%= select("header", "type_1", %w[accept content-type location], :include_blank => false) %> 
+  <%= select_tag("header_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
+  <%= text_field_tag(:add_header_values_1, nil,  :placeholder => "Enter value", :class => "header_value_text_field") %> 
+  <%= button_tag "Add value", :class => "add_value_btn", :id => "add_header_value_btn_1" %><br/>
+</div>
+ <%= button_to_function "Add Header", "addHeader()" , :id => "add_header", :class => 'btn btn-inverse' %><br/>	
 
 <div class="form-actions">
 <%= submit_tag("Run", :class => 'btn btn-primary')  %>

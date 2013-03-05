@@ -50,6 +50,24 @@
   };
  
 
+  function addHeader() {
+   count = $('select[id*="header_type_"]').length ;
+   parent = count;
+   child = parent + 1
+	   
+ $("#header_"+parent).after("<div id='header_"+ child +"' class='header'></div>");
+	 
+ $("#header_"+child).append("<select type='text' id='header_type_"+child+"' name='header[type_"+child+"]' > </select>");
+ $("#header_type_" + child).append("<option value='accept' >accept</option>").append("<option value='content-type' >content-type</option>").append("<option value='location' >location</option>");
+	  
+ $("#header_"+child).append("<select multiple='multiple' id='header_values_" + child +"'  name='header_values_" + child +"[]'><option value=''></option></select>").append(" ");
+
+  $("#header_"+child).append("<input type='text' class='header_value_text_field' id='add_header_value_field_"+ child +"' > ");	 	 
+	
+  $("#header_"+child).append("<button type='button' class='add_value_btn'  id='add_header_value_btn_" + child + "'>Add Value</button>");	 
+  };
+ header[type_1]
+
 
 $(".container").on("click", ".add_value_btn", function(event){
   event.preventDefault();
