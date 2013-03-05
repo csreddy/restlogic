@@ -25,7 +25,7 @@
 	Count: <%= @reqd_and_opt_results.size %><br>
 <%= @method[:method] %> 
 	<% @reqd_and_opt_results.each do |r| %>
-          <%= @endpoint %> <%= r.to_s.gsub("[", "").gsub("]", "").gsub("\"", "") %>
+      <%= @endpoint %> <%= r.join(" ") %>
             <% end %>
         
 </pre>

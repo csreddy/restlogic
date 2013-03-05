@@ -62,11 +62,10 @@
 	  
  $("#header_"+child).append("<select multiple='multiple' id='header_values_" + child +"'  name='header_values_" + child +"[]'><option value=''></option></select>").append(" ");
 
-  $("#header_"+child).append("<input type='text' class='header_value_text_field' id='add_header_value_field_"+ child +"' > ");	 	 
+  $("#header_"+child).append("<input type='text' name='header_value_"+ child +"' class='header_value_text_field' id='header_value_"+ child +"' > ");	 	 
 	
-  $("#header_"+child).append("<button type='button' class='add_value_btn'  id='add_header_value_btn_" + child + "'>Add Value</button>");	 
+  $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add Value</button>");	 
   };
- header[type_1]
 
 
 $(".container").on("click", ".add_value_btn", function(event){
@@ -78,6 +77,18 @@ if(newValue.length !=0){
 	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
       $(parent).find('select option').prop('selected', 'selected');
        $(parent).find('.value_text_field').val("");
+}  
+});
+
+$(".container").on("click", ".add_header_value_btn", function(event){
+  event.preventDefault();
+  var parent = $(this).parent();
+  var newValue = $(parent).find('.header_value_text_field').val();
+  var values = $(parent).children('select').eq(1);
+if(newValue.length !=0){
+	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
+      $(parent).children('select').eq(1).find('option').prop('selected', 'selected');
+       $(parent).find('.header_value_text_field').val("");
 }  
 });
 

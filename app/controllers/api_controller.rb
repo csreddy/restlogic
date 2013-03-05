@@ -4,10 +4,13 @@ class ApiController < ApplicationController
     @method = params[:http]
     @reqd_params = get_reqd_param_names
     @opt_params = get_opt_param_names
+    
+    @r = get_reqd_params_and_values
+    @o = get_opt_params_and_values
+    
     @r_output = reqd_params_only_result
     @o_output = opt_params_only_result
-     @r = get_reqd_params_and_values
-     @o = get_opt_params_and_values
+    
      @reqd_and_opt_results = reqd_and_opt_params_combination_results
     respond_to do |format|
       format.html
@@ -149,7 +152,6 @@ end
  # final_list << combinations.each_index.flat_map{|i| combinations[0].product(*combinations[1..i])}
   final_list << progressive_product(combinations)
    final_list.each_index {|i| final_list[i].each {|k| final_comb << final_list[i][final_list[i].index(k)] }}
-   logger.info "---------------------------------"+final_comb.size.to_s
    final_comb.flatten(1)
 
 end

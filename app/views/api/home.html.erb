@@ -6,12 +6,12 @@
 
 	<%= form_tag( "/api/home", :method => "get", :remote => true,:id => 'api_form' , :class => 'dl-horizontal') do %>
 	
-
+	<strong>HTTP Method:</strong><br/>
 	  <%= select("http","method", %w[GET POST PUT DELETE HEAD], {:include_blank => false}) %>
 	  
 	 <div class="control-group">
 		 <label class="control-label" for="endpoint">
-			 <%= label_tag(:endpoint, "api:") %>
+			<strong>API:</strong>
 		 </label>
 	  <div class="controls">
 	        <%= text_field_tag :endpoint, nil, :placeholder => "Endpoint"  %>
@@ -19,7 +19,7 @@
 	  </div>
 		  
 	
-	  <%= label_tag(:rparam, "Required parameters:") %>
+	 <strong> Required parameters: </strong>
 	  <div id="rpm_1" class="rparam">
 	  <%= text_field_tag(:rparams_1, nil,  :placeholder => "Required Parameter") %> 
 	   <%= select_tag("rparam_values_1", %w[].to_s, :multiple => true, :include_blank => true) %> 
@@ -28,7 +28,7 @@
 	    </div>
 	  <%= button_to_function "Add Reqd param", "addReqdParam()" , :id => "add_rparam" , :class => 'btn btn-inverse' %><br/>
 	  <br/>
-      <%= label_tag(:oparam, "Optional Parameters:") %>
+     <strong>Optional Parameters:</strong>
 	  <div id="opm_1" class="oparam">
 	   <%= text_field_tag(:oparams_1, nil,  :placeholder => "Optional Parameter") %> 
 	    <%= select_tag("oparam_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
@@ -36,12 +36,12 @@
 		 <%= button_tag "Add value", :class => "add_value_btn", :id => "add_oparam_value_btn_1" %><br/>
 	 </div> 
 	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam", :class => 'btn btn-inverse' %><br/><br/>
-	 Request/Response Header:
+	 <strong>Request/Response Header:</strong>
 <div id="header_1" class="header">
   <%= select("header", "type_1", %w[accept content-type location], :include_blank => false) %> 
   <%= select_tag("header_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
-  <%= text_field_tag(:add_header_values_1, nil,  :placeholder => "Enter value", :class => "header_value_text_field") %> 
-  <%= button_tag "Add value", :class => "add_value_btn", :id => "add_header_value_btn_1" %><br/>
+  <%= text_field_tag(:header_value_1, nil,  :placeholder => "Enter value", :class => "header_value_text_field") %> 
+  <%= button_tag "Add value", :class => "add_header_value_btn", :id => "add_header_value_btn_1" %><br/>
 </div>
  <%= button_to_function "Add Header", "addHeader()" , :id => "add_header", :class => 'btn btn-inverse' %><br/>	
 
