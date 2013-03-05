@@ -33,6 +33,11 @@
 body { padding-top: 60px; }
 
 .add_value_btn, .add_header_value_btn  {
+height: 30px;
+    width: 35px;
+    border-radius: 50px;
+    border: 1px solid #000;
+	
   display: inline-block;
   .ie7-inline-block();
   padding: @paddingMini;
@@ -43,10 +48,10 @@ body { padding-top: 60px; }
   vertical-align: middle;
   cursor: pointer;
  	.buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
-  border: 1px solid @btnBorder;
-  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+ // border: 1px solid @btnBorder;
+ // *border: 0; // Remove the border to prevent IE7's black border on input:focus
   border-bottom-color: darken(@btnBorder, 10%);
-  .border-radius(@borderRadiusSmall);
+ // .border-radius(@borderRadiusSmall);
   .ie7-restore-left-whitespace(); // Give IE7 some love
   .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
 
@@ -84,4 +89,20 @@ body { padding-top: 60px; }
     .box-shadow(none);
   }
 
+}
+
+.navbar .brand {
+  float: left;
+  display: block;
+  // Vertically center the text given @navbarHeight
+  padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
+  margin-left: -20px; // negative indent to left-align the text down the page
+  font-size: 20px;
+  font-weight: 300;
+  color: white;
+  text-shadow: 0 1px 0 @navbarBackgroundHighlight;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }

@@ -4,30 +4,26 @@
 	Optional Params : <%=  @o.to_s %><br>
 	<pre>
     <strong>Required Params combinations</strong>
-	Count: <%= @r_output.size %><br>
-<%= @method[:method] %> 
+    Count: <%= @r_output.size %><br><%= @method[:method] %> 
     <% @r_output.each do |o| %>
-          <%= @endpoint %>  <%= o %>
+      <%= @endpoint %>  <%= o %>
        <% end %>
     
-</pre>
-<!--	<pre>
-        <strong>Optional Params combinations</strong>
-    <%= @method[:method] %> : <%= @endpoint %> 
-        <% @o_output.each do |o| %>
-              <%= @endpoint %>  <%= o.to_s.gsub("[", "").gsub("]", "").gsub("\"", "") %>
-           <% end %>
-        
+</pre><!--    <pre>
+		<strong>Optional Params combinations</strong>
+	<%= @method[:method] %> : <%= @endpoint %> 
+		<% @o_output.each do |o| %>
+			  <%= @endpoint %>  <%= o.to_s.gsub("[", "").gsub("]", "").gsub("\"", "") %>
+		   <% end %>
+		
 </pre>
 -->
 	<pre>
     <strong>Required + Optional Params combinations</strong>    
-	Count: <%= @reqd_and_opt_results.size %><br>
-<%= @method[:method] %> 
-	<% @reqd_and_opt_results.each do |r| %>
+    Count: <%= @reqd_and_opt_results.size %><br><%= @method[:method] %> 
+    <% @reqd_and_opt_results.each do |r| %>
       <%= @endpoint %> <%= r.join(" ") %>
             <% end %>
         
 </pre>
-
 </div>

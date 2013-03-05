@@ -21,7 +21,7 @@
 	   parent = count;
 	   child = parent + 1
 	   
-	 $("#rpm_"+parent).after("<div id='rpm_"+ child +"' class='rparam'></div>");
+	 $("#rpm_"+parent).after("<div id='rpm_"+ child +"' class='rparam'></div>").append("<br/>");
 	 
 	 $("#rpm_"+child).append("<input type='text' id='rparams_"+child+"' name='rparams_"+child+"' > ")
 	  
@@ -29,7 +29,7 @@
 
 	  $("#rpm_"+child).append("<input type='text' class='value_text_field' id='add_rparam_value_field_"+ child +"' > ");	 	 
 	
-	  $("#rpm_"+child).append("<button type='button' class='add_value_btn'  id='add_rparam_value_btn_" + child + "' >Add Value</button>");	 
+	  $("#rpm_"+child).append("<button type='button' class='add_value_btn'  id='add_rparam_value_btn_" + child + "' >Add</button>");	 
 	  
   };
   
@@ -38,7 +38,7 @@
    parent = count;
    child = parent + 1
 	   
- $("#opm_"+parent).after("<div id='opm_"+ child +"' class='oparam'></div>");
+ $("#opm_"+parent).after("<div id='opm_"+ child +"' class='oparam'></div>").append("<br/>");
 	 
  $("#opm_"+child).append("<input type='text' id='oparams_"+child+"' name='oparams_"+child+"' > ")
 	  
@@ -46,7 +46,7 @@
 
   $("#opm_"+child).append("<input type='text' class='value_text_field' id='add_oparam_value_field_"+ child +"' > ");	 	 
 	
-  $("#opm_"+child).append("<button type='button' class='add_value_btn'  id='add_oparam_value_btn_" + child + "'>Add Value</button>");	 
+  $("#opm_"+child).append("<button type='button' class='add_value_btn'  id='add_oparam_value_btn_" + child + "'>Add</button>");	 
   };
  
 
@@ -55,16 +55,16 @@
    parent = count;
    child = parent + 1
 	   
- $("#header_"+parent).after("<div id='header_"+ child +"' class='header'></div>");
+ $("#header_"+parent).after("<div id='header_"+ child +"' class='header'></div>").append("<br/>");
 	 
- $("#header_"+child).append("<select type='text' id='header_type_"+child+"' name='header[type_"+child+"]' > </select>");
+ $("#header_"+child).append("<select type='text' id='header_type_"+child+"' name='header[type_"+child+"]' > </select>").append(" ");
  $("#header_type_" + child).append("<option value='accept' >accept</option>").append("<option value='content-type' >content-type</option>").append("<option value='location' >location</option>");
 	  
  $("#header_"+child).append("<select multiple='multiple' id='header_values_" + child +"'  name='header_values_" + child +"[]'><option value=''></option></select>").append(" ");
 
   $("#header_"+child).append("<input type='text' name='header_value_"+ child +"' class='header_value_text_field' id='header_value_"+ child +"' > ");	 	 
 	
-  $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add Value</button>");	 
+  $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add</button>");	 
   };
 
 
