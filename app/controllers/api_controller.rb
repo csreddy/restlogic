@@ -7,6 +7,8 @@ class ApiController < ApplicationController
     
     @r = get_reqd_params_and_values
     @o = get_opt_params_and_values
+   # @h = get_headers
+   #  @h = header_array
     
     @r_output = reqd_params_only_result
     @o_output = opt_params_only_result
@@ -17,6 +19,15 @@ class ApiController < ApplicationController
       format.js
     end
   end
+
+
+def tests
+ tests = []
+respond_to do |format|
+      format.xml 
+    end
+end
+
 
   private
 
@@ -163,6 +174,30 @@ def progressive_product(arrs)
   (1..xs.count).map(&xs.method(:take)).map do |args|
     x.product(*args)
   end
+end
+
+
+# returns a hash of header fields and its values
+def get_headers
+header_values = {}
+    i = 1
+    while !params[:header][:type_.to_s + "#{i}"].nil?
+	value = params[:header_values_.to_s + "#{i}"]
+   	header_values[params[:header][:type_.to_s + "#{i}"]] = value
+      i += 1
+    end
+    header_values
+end
+
+def header_array
+  hash = get_headers 
+  arr = []
+  hash.each do |k, v|
+	v.each do |i|
+	arr << k + "=" + i
+	end
+end
+  arr
 end
 
 

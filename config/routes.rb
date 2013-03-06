@@ -1,6 +1,8 @@
 Restlogic::Application.routes.draw do
-  get "api/home"
+  
   root :to => "api#home"
+  get "api/home" 
+  get "api/tests"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

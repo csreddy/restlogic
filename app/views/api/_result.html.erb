@@ -2,6 +2,7 @@
 	<div id="results"></div>Count: <%= @r_output.size + @reqd_and_opt_results.size %><br>
 	Required Params : <%=  @r.to_s %><br>
 	Optional Params : <%=  @o.to_s %><br>
+	        Headers : <%=  @h.to_s %><br>
 	<pre>
     <strong>Required Params combinations</strong>
     Count: <%= @r_output.size %><br><%= @method[:method] %> 
@@ -22,7 +23,7 @@
     <strong>Required + Optional Params combinations</strong>    
     Count: <%= @reqd_and_opt_results.size %><br><%= @method[:method] %> 
     <% @reqd_and_opt_results.each do |r| %>
-      <%= @endpoint %> <%= r.join(" ") %>
+      <%= @endpoint %> <%= r.join(" ") %>   <%#= @h[rand(@h.size)] if (@h.size > 0) %>
             <% end %>
         
 </pre>
