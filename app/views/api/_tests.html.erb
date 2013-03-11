@@ -26,8 +26,8 @@
 	 xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%= o.gsub(" ", "&") %>"),
 	     &ltoptions xmlns="xdmp:http"&gt
 	       &ltauthentication method="digest"&gt
-	         &ltusername&gtmyname&lt/username&gt
-	         &ltpassword&gtmypassword&lt/password&gt
+	         &ltusername&gtadmin&lt/username&gt
+	         &ltpassword&gtadmin&lt/password&gt
 	       &lt/authentication&gt
 		   <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
 		    &ltdata&gt{$payload}&lt/data&gt
@@ -63,8 +63,8 @@
 	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&") : r %>"),
 		     &ltoptions xmlns="xdmp:http"&gt
 		       &ltauthentication method="digest"&gt
-		         &ltusername&gtmyname&lt/username&gt
-		         &ltpassword&gtmypassword&lt/password&gt
+		         &ltusername&gtadmin&lt/username&gt
+		         &ltpassword&gtadmin&lt/password&gt
 		       &lt/authentication&gt
 			   <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
 			    &ltdata&gt{$payload}&lt/data&gt
