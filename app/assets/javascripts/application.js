@@ -137,7 +137,7 @@ function SelectText(element) {
  // load example1 endpoint params
  function example1(){
 	 $("#http_method").val("GET");
-	 $("#endpoint").val("/v1/search/");
+	 $("#endpoint").val("http://localhost:8003/v1/search/");
 	 // reqd params
 //	 $("#rparams_1").val("R1");
 //	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
@@ -181,7 +181,7 @@ function SelectText(element) {
  
  function example2(){
 	 $("#http_method").val("POST");
-	 $("#endpoint").val("/v1/example/");
+	 $("#endpoint").val("http://localhost:8003/v1/example/");
 	 // reqd params
 	 $("#rparams_1").val("Reqd1");
 	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
