@@ -64,7 +64,7 @@
 
   $("#header_"+child).append("<input type='text' name='header_value_"+ child +"' class='header_value_text_field' id='header_value_"+ child +"' > ");	 	 
 	
-  $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add</button>");	 
+  $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add</button>").append("<br/>");	 
   };
 
 
@@ -77,7 +77,7 @@ if(newValue.length !=0){
 	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
       $(parent).find('select option').prop('selected', 'selected');
        $(parent).find('.value_text_field').val("");
-}  
+} 
 });
 
 $(".container").on("click", ".add_header_value_btn", function(event){
@@ -89,9 +89,132 @@ if(newValue.length !=0){
 	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
       $(parent).children('select').eq(1).find('option').prop('selected', 'selected');
        $(parent).find('.header_value_text_field').val("");
-}  
+}
 });
 
+function form_action(action){
+	switch(action){
+		case 'home':
+			$('#api_form').attr("action", "/api/home");
+			break;
+		case 'tests':
+			$('#api_form').attr("action", "/api/tests");
+		//	$('#api_form').attr("data-remote", "false");
+	}
+	$('#api_form').submit();
+	
+	$(document).ajaxStop(function(r, s) {
+		if($("#results").text() != ""){
+		$('#copy').attr("style", "visibility: visible;"); 
+		}
+	});
+};
 
+function SelectText(element) {
+    var doc = document
+        , text = doc.getElementById(element)
+        , range, selection
+    ;    
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();        
+        range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+};
+
+ SelectText('results');
+ 
+ // load example1 endpoint params
+ function example1(){
+	 $("#http_method").val("GET");
+	 $("#endpoint").val("/v1/search/");
+	 // reqd params
+//	 $("#rparams_1").val("R1");
+//	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
+//	 $("#rparam_values_1").append("<option value='value2' >Value2</option>");
+//	 $("#rparam_values_1").find('option').prop('selected', 'selected');
+//	 $("#add_rparam").click();
+//	 $("#rparams_2").val("R2");
+//	 $("#rparam_values_2").append("<option value='value1' >Value1</option>");
+//	 $("#rparam_values_2").append("<option value='value2' >Value2</option>");
+//	 $("#rparam_values_2").find('option').prop('selected', 'selected');
+	 
+	 // optional params
+	 $("#oparams_1").val("q");
+	 $("#oparam_values_1").append("<option value='james'>james</option>");
+	 $("#oparam_values_1").append("<option value='%$*#'>%$*#</option>");
+	 $("#oparam_values_1").find('option').prop('selected', 'selected');
+	 $("#add_oparam").click();
+	 $("#oparams_2").val("start");
+	 $("#oparam_values_2").append("<option value='1'>1</option>");
+	 $("#oparam_values_2").append("<option value='-10'>-10</option>");
+	 $("#oparam_values_2").find('option').prop('selected', 'selected');
+	 $("#add_oparam").click();
+	 $("#oparams_3").val("pageLength");
+	 $("#oparam_values_3").append("<option value='20'>20</option>");
+	 $("#oparam_values_3").append("<option value='abc'>abc</option>");
+	 $("#oparam_values_3").find('option').prop('selected', 'selected');
+	 $("#add_oparam").click();
+	 $("#oparams_4").val("format");
+	 $("#oparam_values_4").append("<option value='xml'>xml</option>");
+	 $("#oparam_values_4").append("<option value='json'>json</option>");
+	 $("#oparam_values_4").append("<option value='text'>text</option>");
+	 $("#oparam_values_4").find('option').prop('selected', 'selected');
+	 
+	 // headers
+	 $("#header_type_1").val("content-type");
+	 $("#header_values_1").append("<option value='application/xml'>application/xml</option>");
+	 $("#header_values_1").append("<option value='application/text'>application/json</option>");
+	 $("#header_values_1").find('option').prop('selected', 'selected');
+ }
  
  
+ function example2(){
+	 $("#http_method").val("POST");
+	 $("#endpoint").val("/v1/example/");
+	 // reqd params
+	 $("#rparams_1").val("R1");
+	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
+	 $("#rparam_values_1").append("<option value='value2' >Value2</option>");
+	 $("#rparam_values_1").find('option').prop('selected', 'selected');
+	 $("#add_rparam").click();
+	 $("#rparams_2").val("R2");
+	 $("#rparam_values_2").append("<option value='somevalue1' >somevalue1</option>");
+	 $("#rparam_values_2").append("<option value='somevalue2' >somevalue2</option>");
+	 $("#rparam_values_2").find('option').prop('selected', 'selected');
+	 
+	 // optional params
+	 $("#oparams_1").val("O1");
+	 $("#oparam_values_1").append("<option value='value1'>value1</option>");
+	 $("#oparam_values_1").append("<option value='%$*#'>%$*#</option>");
+	 $("#oparam_values_1").find('option').prop('selected', 'selected');
+	 $("#add_oparam").click();
+	 $("#oparams_2").val("O2");
+	 $("#oparam_values_2").append("<option value='badvalue1'>badvalue1</option>");
+	 $("#oparam_values_2").append("<option value='1000'>1000</option>");
+	 $("#oparam_values_2").find('option').prop('selected', 'selected');
+	
+	 // headers
+	 $("#header_type_1").val("accept");
+	 $("#header_values_1").append("<option value='application/xml'>application/xml</option>");
+	 $("#header_values_1").append("<option value='application/text'>application/json</option>");
+	 $("#header_values_1").find('option').prop('selected', 'selected');
+ }
+ 
+ 
+// $(document).ajaxSend(function(r, s) {
+//     $("#wait").show();
+//     $('#myModal').modal('show');
+// 
+// 	});
+//
+// $(document).ajaxStop(function(r, s) {
+//     $("#wait").fadeOut("fast");
+//    $('#myModal').modal('hide');
+// });

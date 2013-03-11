@@ -1,0 +1,82 @@
+
+<div class="span10">
+	<div id="results"></div>Total Count:<span class="badge badge-success"><%= @r_output.size + @reqd_and_opt_results.size %></span><br>
+<!--	Required Params : <%=  @r.to_s %><br>
+	Optional Params : <%=  @o.to_s %><br>
+	<%= @header_fields %>
+	        Headers : <%=  @h.to_s %><br>
+-->
+<strong>Required Parameter Tests</strong><br/>
+ Count: <span class="badge badge-success"><%= @r_output.size %></span><br/>
+<pre>
+	 <% @r_output.each do |o| %>
+	 <% header_field = @header_fields.keys[rand(@header_fields.keys.size)] %>
+	 <% header_value = @header_fields[header_field.to_s][rand(@header_fields[header_field.to_s].size)] %>
+   	 
+      &lth:test h:output-result="true"&gt
+      &lth:name>test-<%= @r_output.index(o)+1 %>&lt/h:name&gt
+        &lth:comment-expected-result&gt[Expected Result]&lt/h:comment-expected-result&gt
+        &lth:query&gt
+	&lt![CDATA[	 
+	  <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
+	 let $payload := [PAYLOAD]
+	 return
+     <% end %>	 
+	 xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%= o.gsub(" ", "&") %>"),
+	     &ltoptions xmlns="xdmp:http"&gt
+	       &ltauthentication method="digest"&gt
+	         &ltusername&gtmyname&lt/username&gt
+	         &ltpassword&gtmypassword&lt/password&gt
+	       &lt/authentication&gt
+		   <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
+		    &ltdata&gt{$payload}&lt/data&gt
+		   <% end %>		 
+		  &ltheaders&gt
+		 &lt<%= header_field %>&gt<%= header_value %>&lt/<%=  header_field %>&gt
+		&lt/headers&gt
+	     &lt/options&gt)		
+         ]]&gt
+	&lt/h:query&gt
+      &lt/h:test&gt<br/>
+	 <% end %>
+</pre>
+
+    <strong>Required + Optional Parameter Tests</strong><br/>    
+    Count: <span class="badge badge-success"><%= @reqd_and_opt_results.size %></span><br/>
+	
+	<pre>
+		 <% @reqd_and_opt_results.each do |r| %>
+		 <% header_field = @header_fields.keys[rand(@header_fields.keys.size)] %>
+		 <% header_value = @header_fields[header_field.to_s][rand(@header_fields[header_field.to_s].size)] %>
+   	 
+         &lth:test h:output-result="true"&gt
+         &lth:name>test-<%=  @reqd_and_opt_results.index(r)+1 %>&lt/h:name&gt
+           &lth:comment-expected-result&gt[Expected Result]&lt/h:comment-expected-result&gt
+           &lth:query&gt
+   	   &lt![CDATA[	 
+      	  <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
+   	    let $payload := [PAYLOAD]
+        <% end %>	 
+	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&") : r %>"),
+		     &ltoptions xmlns="xdmp:http"&gt
+		       &ltauthentication method="digest"&gt
+		         &ltusername&gtmyname&lt/username&gt
+		         &ltpassword&gtmypassword&lt/password&gt
+		       &lt/authentication&gt
+			   <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
+			    &ltdata&gt{$payload}&lt/data&gt
+			   <% end %>	
+			  &ltheaders&gt
+			 &lt<%= header_field %>&gt<%= header_value %>&lt/<%=  header_field %>&gt
+			&lt/headers&gt
+		     &lt/options&gt)
+	      ]]&gt
+             &lt/h:query&gt
+	    &lt/h:test&gt<br/>
+		 <% end %>	        
+	</pre>
+
+        
+
+</div>
+

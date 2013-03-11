@@ -5,73 +5,68 @@
 </div>
 
 
-	<%= form_tag( "/api/home", :method => "get", :remote => true,:id => 'api_form' , :class => 'form-horizontal') do %>
+	<%= form_tag( "/", :method => :get, :remote => true,:id => 'api_form' , :class => 'form-horizontal') do %>
  <div class="control-group">
-	 <label class="control-label" for="http-method">
-	<strong>HTTP Method:</strong><br/>
-</label>
+	 <label class="control-label" for="http-method"><strong>HTTP Method:</strong><br/></label>
  <div class="controls">
 	  <%= select("http","method", %w[GET POST PUT DELETE HEAD], {:include_blank => false}) %>
   </div>
 </div>
+
 	 <div class="control-group">
-		 <label class="control-label" for="endpoint">
-			<strong>API:</strong>
-		 </label>
+		 <label class="control-label" for="endpoint"><strong>Endpoint:</strong></label>
 	  <div class="controls">
 	        <%= text_field_tag :endpoint, nil, :placeholder => "Endpoint"  %>
 	      </div>
 	  </div>
 		  
  	 <div class="control-group">
- 		 <label class="control-label" for="reqd-params">
-	 <strong> Required parameters: </strong>
- </label>
+ 		 <label class="control-label" for="reqd-params"><strong> Required parameters: </strong></label>
 	   <div class="controls">
-	  <div id="rpm_1" class="rparam">
-	  <%= text_field_tag(:rparams_1, nil,  :placeholder => "Required Parameter") %> 
-	   <%= select_tag("rparam_values_1", %w[].to_s, :multiple => true, :include_blank => true) %> 
-	   <%= text_field_tag(:add_rparam_value_1, nil, :placeholder => "Enter value", :class => "value_text_field") %> 
-	   <%= button_tag "Add", :class => "add_value_btn", :id => "add_rparam_value_btn_1" %><br/>
-	    </div>
-	  <%= button_to_function "Add Reqd param", "addReqdParam()" , :id => "add_rparam" , :class => 'btn' %><br/>
+		   <div id="rpm_1" class="rparam">
+	 		  <%= text_field_tag(:rparams_1, nil,  :placeholder => "Required Parameter") %> 
+	   	   	  <%= select_tag("rparam_values_1", %w[].to_s, :multiple => true, :include_blank => true) %> 
+	   		  <%= text_field_tag(:add_rparam_value_1, nil, :placeholder => "Enter value", :class => "value_text_field") %> 
+	          <%= button_tag "Add", :class => "add_value_btn", :id => "add_rparam_value_btn_1" %><br/>
+	     </div>
+
+	  <%= button_to_function("Add Required Parameter", "addReqdParam()" , :id => "add_rparam" , :class => 'btn') %>
 	  <br/>
-  </div>
-</div>
+      </div>
+   </div>
+   
 <div class="control-group">
- <label class="control-label" for="opt-params">
-     <strong>Optional Parameters:</strong>
- </label>
+ <label class="control-label" for="opt-params"><strong>Optional Parameters:</strong></label>
 	  <div class="controls">
-	  <div id="opm_1" class="oparam">
-	   <%= text_field_tag(:oparams_1, nil,  :placeholder => "Optional Parameter") %> 
-	    <%= select_tag("oparam_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
-		<%= text_field_tag(:add_oparam_value_1, nil,  :placeholder => "Enter value", :class => "value_text_field") %> 
+	  	<div id="opm_1" class="oparam">
+	   	 <%= text_field_tag(:oparams_1, nil,  :placeholder => "Optional Parameter") %> 
+		 <%= select_tag("oparam_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
+		 <%= text_field_tag(:add_oparam_value_1, nil,  :placeholder => "Enter value", :class => "value_text_field") %> 
 		 <%= button_tag "Add", :class => "add_value_btn", :id => "add_oparam_value_btn_1" %><br/>
 	 </div> 
-	  <%= button_to_function "Add Optional param", "addOptionalParam()" , :id => "add_oparam", :class => 'btn' %><br/><br/>
-  </div>
+	  <%= button_to_function "Add Optional Parameter", "addOptionalParam()" , :id => "add_oparam", :class => 'btn' %><br/><br/>
+ 	 </div>
 </div>
+
 <div class="control-group">
- <label class="control-label" for="req-resp-header">
-	 <strong>Request/Response Header:</strong>
- </label>
-	  <div class="controls">
-<div id="header_1" class="header">
-  <%= select("header", "type_1", %w[accept content-type location], :include_blank => false) %> 
-  <%= select_tag("header_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
-  <%= text_field_tag(:header_value_1, nil,  :placeholder => "Enter value", :class => "header_value_text_field") %> 
-  <%= button_tag "Add", :class => "add_header_value_btn", :id => "add_header_value_btn_1" %><br/>
-</div>
+ <label class="control-label" for="req-resp-header"><strong>Request/Response Header:</strong> </label>
+	 <div class="controls">
+		 <div id="header_1" class="header">
+  		   	<%= select("header", "type_1", %w[accept content-type location], :include_blank => false) %> 
+  			<%= select_tag("header_values_1", %w[].to_s,  :multiple => true, :include_blank => true) %>  
+  	   		<%= text_field_tag(:header_value_1, nil,  :placeholder => "Enter value", :class => "header_value_text_field") %> 
+  	 		<%= button_tag "Add", :class => "add_header_value_btn", :id => "add_header_value_btn_1" %><br/>
+		</div>
  <%= button_to_function "Add Header", "addHeader()" , :id => "add_header", :class => 'btn' %><br/>	
-</div>
-</div>
+	</div>
+	</div>
+	
 <div class="form-actions">
-<%= submit_tag("Get Combinations", :class => 'btn btn-primary')  %>
-<%= link_to("Generate Tests", api_tests_path, {:target => "_blank"}  ) %>
+	<%= button_to_function "Generate Combinations", "form_action('home')", :id => "home", :class => "btn btn-primary" %>
+	<%= button_to_function "Generate Tests", "form_action('tests')" , :id => "tests" , :class => "btn btn-primary" %>
 </div>
 	<% end %>
-	
+	<%= button_to_function "Select Results", "SelectText('results')" , :id => "copy" , :class => "btn", :style => "visibility:hidden" %>
 	<div class="span8">
 		<div id="results"></div>
 	</div>

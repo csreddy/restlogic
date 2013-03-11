@@ -1,15 +1,16 @@
-<div class="span8">
-	<div id="results"></div>Count: <%= @r_output.size + @reqd_and_opt_results.size %><br>
-	Required Params : <%=  @r.to_s %><br>
+<div class="span10">
+	<div id="results"></div>Total Count: <span class="badge badge-success"><%= @r_output.size  + @reqd_and_opt_results.size %></span><br/>
+<!--	Required Params : <%=  @r.to_s %><br>
 	Optional Params : <%=  @o.to_s %><br>
 	        Headers : <%=  @h.to_s %><br>
+-->			
+<strong>Required Paramemeter Combinations</strong><br/>
+	Count:<span class="badge badge-success"> <%= @r_output.size %></span><br/>
 	<pre>
-    <strong>Required Params combinations</strong>
-    Count: <%= @r_output.size %><br><%= @method[:method] %> 
+ <%= @method[:method] if (@r_output.size > 0) %> 
     <% @r_output.each do |o| %>
       <%= @endpoint %>  <%= o %>
-       <% end %>
-    
+       <% end %>   
 </pre><!--    <pre>
 		<strong>Optional Params combinations</strong>
 	<%= @method[:method] %> : <%= @endpoint %> 
@@ -19,12 +20,14 @@
 		
 </pre>
 -->
-	<pre>
-    <strong>Required + Optional Params combinations</strong>    
-    Count: <%= @reqd_and_opt_results.size %><br><%= @method[:method] %> 
-    <% @reqd_and_opt_results.each do |r| %>
-      <%= @endpoint %> <%= r.join(" ") %>   <%#= @h[rand(@h.size)] if (@h.size > 0) %>
+<strong>Required + Optional Parameter combinations</strong><br/>   
+Count: <span class="badge badge-success"><%= @reqd_and_opt_results.size %></span><br/>
+<pre>
+ <%= @method[:method] if (@reqd_and_opt_results.size > 0) %> 
+     <% @reqd_and_opt_results.each do |r| %>
+      <%= @endpoint %> <%= r.kind_of?(Array) ? r.join(" ") : r %>   <%#= @h[rand(@h.size)] if (@h.size > 0) %>
             <% end %>
         
 </pre>
 </div>
+

@@ -1,19 +1,18 @@
 class ApiController < ApplicationController
+
+  
   def home
     @endpoint = params[:endpoint]
     @method = params[:http]
     @reqd_params = get_reqd_param_names
     @opt_params = get_opt_param_names
-    
-    @r = get_reqd_params_and_values
     @o = get_opt_params_and_values
-   # @h = get_headers
-   #  @h = header_array
-    
+    @h = header_array  # @h = get_headers
     @r_output = reqd_params_only_result
     @o_output = opt_params_only_result
-    
-     @reqd_and_opt_results = reqd_and_opt_params_combination_results
+    @r = get_reqd_params_and_values    
+    @reqd_and_opt_results = reqd_and_opt_params_combination_results
+    logger.info " reqd_and_opt_results  = "+ @reqd_and_opt_results.to_s
     respond_to do |format|
       format.html
       format.js
@@ -22,9 +21,20 @@ class ApiController < ApplicationController
 
 
 def tests
- tests = []
+  @endpoint = params[:endpoint]
+  @method = params[:http]
+  @reqd_params = get_reqd_param_names
+  @opt_params = get_opt_param_names
+  @r = get_reqd_params_and_values
+  @o = get_opt_params_and_values
+  @header_fields = get_headers
+  @h = header_array
+  @r_output = reqd_params_only_result
+  @o_output = opt_params_only_result
+  @reqd_and_opt_results = reqd_and_opt_params_combination_results 
 respond_to do |format|
-      format.xml 
+      format.html
+      format.js
     end
 end
 
@@ -44,13 +54,18 @@ end
 
 
 def get_reqd_params_and_values 
+  logger.info "get_reqd_params_and_values----------------------"
  values = {}
     i = 1
-    while !params[:rparams_.to_s + "#{i}"].nil?	
-	value = params[:rparam_values_.to_s + "#{i}"]
-      values[params[:rparams_.to_s + "#{i}"]] = value
+    while !params[:rparams_.to_s + "#{i}"].nil?
+      if(!params[:rparams_.to_s + "#{i}"].empty?)
+      value = params[:rparam_values_.to_s + "#{i}"]
+      logger.info "--------------"+params[:rparam_values_.to_s + "#{i}"].to_s
+      values[params[:rparams_.to_s + "#{i}"]] = value     
+    end 
       i += 1
     end
+     logger.info "--------------"+values.to_s
     values
 end 
 
@@ -63,13 +78,15 @@ end
     end
     oparams
   end
-  
+
 def get_opt_params_and_values 
  values = {}
     i = 1
     while !params[:oparams_.to_s + "#{i}"].nil?
-	value = params[:oparam_values_.to_s + "#{i}"]
+	    if(!params[:oparams_.to_s + "#{i}"].empty?)
+      value = params[:oparam_values_.to_s + "#{i}"]
       values[params[:oparams_.to_s + "#{i}"]] = value
+    end
       i += 1
     end
     values
@@ -89,7 +106,13 @@ end
  #end  
 
   def reqd_and_opt_params_combination_results
-    @r_output.product(@o_output)  if !(@r_output.empty? || @o_output.empty?)  
+    if @r_output.empty?
+      @o_output
+    elsif @o_output.empty?
+      @r_output
+    else
+        @r_output.product(@o_output)  if !(@r_output.empty? && @o_output.empty?)  
+    end  
   end
 
 
@@ -97,14 +120,16 @@ end
  def reqd_params_only_result
     combinations = []
     reqd_params = get_reqd_params_and_values
+    logger.info "==============="+reqd_params.to_s
      reqd_params.each do |k, v|
-       v.each do |i|
+       if(!v.nil? || k.empty?) 
+         v.each do |i|
          v[v.index(i)] = k.to_s + "=" + v[v.index(i)]
        end
+       end        
        combinations << v
      end
     #  @combinations = @combinations.first.product(*@combinations[1..-1]).map(&:join)
-  
      variations(combinations) unless !combinations
 end
 
@@ -135,7 +160,8 @@ def variations(a)
       first.map{ |x| rest.map{ |y| "#{x} #{y}" } }.flatten
     end
   else
-    "array is empty"
+    # "array is empty"
+    a
   end
   
 end
@@ -147,12 +173,14 @@ def opt_params_only_result
   opt_param_values = get_opt_params_and_values 
   opt_params = get_opt_param_names
    
-  opt_param_values.each do |k, v|
-    v.each do |i|
-       v[v.index(i)] = k.to_s + "=" + v[v.index(i)]
+ 
+    opt_param_values.each do |k, v|
+      v.each do |i|
+         v[v.index(i)] = k.to_s + "=" + v[v.index(i)]
+      end
+      combinations << v
     end
-    combinations << v
-  end
+
 
 (1..combinations.size).each do |c|
   logger.info c.to_s
@@ -181,9 +209,10 @@ end
 def get_headers
 header_values = {}
     i = 1
-    while !params[:header][:type_.to_s + "#{i}"].nil?
-	value = params[:header_values_.to_s + "#{i}"]
-   	header_values[params[:header][:type_.to_s + "#{i}"]] = value
+  #  while !params[:header][:type_.to_s + "#{i}"].nil?
+      while !params[:header_values_.to_s + "#{i}"].nil?
+	    value = params[:header_values_.to_s + "#{i}"]
+    	header_values[params[:header][:type_.to_s + "#{i}"]] = value
       i += 1
     end
     header_values

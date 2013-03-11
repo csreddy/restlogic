@@ -44,6 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+		  <img src="/ml-logo.png" alt="Marklogic" class="navlogo" width="120" height="50" border="0">
           <a class="brand" href="#">RESTlogic</a>
           <div class="container nav-collapse">
             
@@ -53,19 +54,23 @@
     </div>
 
     <div class="container">
+
         <div class="row">
           <div class="span10">
+	  		<div id="myModal" class="modal fade hide" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="width:0px;display:none;">
+	  		<div id="wait" class="progress progress-danger progress-striped active" style="max-width:200px">
+	  			 <div class="bar" style="width: 100%;"></div>
+	  			</div>
+	  		</div>
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
-        <div class="span3" hidden="true" >
+        <div class="span2" >
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+				  <li class="nav-header">Examples</li>
+                <li><%= link_to_function "Example GET", "example1()", :id => "example", :remote => true %></li>
+               <li><%= link_to_function "Example POST", "example2()", :id => "example", :remote => true %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
