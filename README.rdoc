@@ -1,3 +1,2 @@
 == RESTlogic
-Returns all possible combination of paramaters (required and optional) and their values for test coverage 
-[**** App is under construction ****]
+Generates all possible combinations of required and optional parameter values and their corresponding XML tests for the given REST endpoint
