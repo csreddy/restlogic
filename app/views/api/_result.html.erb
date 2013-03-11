@@ -9,7 +9,7 @@
 	<pre>
  <%= @method[:method] if (@r_output.size > 0) %> 
     <% @r_output.each do |o| %>
-      <%= @endpoint %>  <%= o %>
+      <%= @endpoint %>  <%= o %>  [<%= @h[(@r_output.index(o) % @h.size)] if (@h.size > 0) %>]
        <% end %>   
 </pre><!--    <pre>
 		<strong>Optional Params combinations</strong>
@@ -25,7 +25,7 @@ Count: <span class="badge badge-success"><%= @reqd_and_opt_results.size %></span
 <pre>
  <%= @method[:method] if (@reqd_and_opt_results.size > 0) %> 
      <% @reqd_and_opt_results.each do |r| %>
-      <%= @endpoint %> <%= r.kind_of?(Array) ? r.join(" ") : r %>   <%= @h[(@reqd_and_opt_results.index(r) % @h.size)] if (@h.size > 0) %>
+      <%= @endpoint %> <%= r.kind_of?(Array) ? r.join(" ") : r %>   [<%= @h[(@reqd_and_opt_results.index(r) % @h.size)] if (@h.size > 0) %>]
             <% end %>
         
 </pre>

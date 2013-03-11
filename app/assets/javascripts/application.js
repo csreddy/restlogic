@@ -23,11 +23,11 @@
 	   
 	 $("#rpm_"+parent).after("<div id='rpm_"+ child +"' class='rparam'></div>").append("<br/>");
 	 
-	 $("#rpm_"+child).append("<input type='text' id='rparams_"+child+"' name='rparams_"+child+"' > ")
+	 $("#rpm_"+child).append("<input type='text' placeholder='Required Parameter' id='rparams_"+child+"' name='rparams_"+child+"' > ")
 	  
 	 $("#rpm_"+child).append("<select multiple='multiple' id='rparam_values_" + child +"'  name='rparam_values_" + child +"[]'><option value=''></option></select> ").append(" ");
 
-	  $("#rpm_"+child).append("<input type='text' class='value_text_field' id='add_rparam_value_field_"+ child +"' > ");	 	 
+	  $("#rpm_"+child).append("<input type='text' class='value_text_field' placeholder='Enter Value' id='add_rparam_value_field_"+ child +"' > ");	 	 
 	
 	  $("#rpm_"+child).append("<button type='button' class='add_value_btn'  id='add_rparam_value_btn_" + child + "' >Add</button>");	 
 	  
@@ -40,11 +40,11 @@
 	   
  $("#opm_"+parent).after("<div id='opm_"+ child +"' class='oparam'></div>").append("<br/>");
 	 
- $("#opm_"+child).append("<input type='text' id='oparams_"+child+"' name='oparams_"+child+"' > ")
+ $("#opm_"+child).append("<input type='text' placeholder='Optional Parameter' id='oparams_"+child+"' name='oparams_"+child+"' > ")
 	  
  $("#opm_"+child).append("<select multiple='multiple' id='oparam_values_" + child +"'  name='oparam_values_" + child +"[]'><option value=''></option></select>").append(" ");
 
-  $("#opm_"+child).append("<input type='text' class='value_text_field' id='add_oparam_value_field_"+ child +"' > ");	 	 
+  $("#opm_"+child).append("<input type='text' class='value_text_field' placeholder='Enter Value' id='add_oparam_value_field_"+ child +"' > ");	 	 
 	
   $("#opm_"+child).append("<button type='button' class='add_value_btn'  id='add_oparam_value_btn_" + child + "'>Add</button>");	 
   };
@@ -58,11 +58,15 @@
  $("#header_"+parent).after("<div id='header_"+ child +"' class='header'></div>").append("<br/>");
 	 
  $("#header_"+child).append("<select type='text' id='header_type_"+child+"' name='header[type_"+child+"]' > </select>").append(" ");
- $("#header_type_" + child).append("<option value='accept' >accept</option>").append("<option value='content-type' >content-type</option>").append("<option value='location' >location</option>");
+
+  headers = ["accept", "accept-charset", "accept-encoding", "accept-language", "cache-control", "connection", "content-length", "content-type", "date", "expires", "location", "referer", "server", "user-agent"];
+ for (i=0;i<headers.length;i++){
+ $("#header_type_" + child).append("<option value='"+ headers[i] +"' >"+ headers[i] +"</option>");
+ } 
 	  
  $("#header_"+child).append("<select multiple='multiple' id='header_values_" + child +"'  name='header_values_" + child +"[]'><option value=''></option></select>").append(" ");
 
-  $("#header_"+child).append("<input type='text' name='header_value_"+ child +"' class='header_value_text_field' id='header_value_"+ child +"' > ");	 	 
+  $("#header_"+child).append("<input type='text' placeholder='Enter Value' name='header_value_"+ child +"' class='header_value_text_field' id='header_value_"+ child +"' > ");	 	 
 	
   $("#header_"+child).append("<button type='button' class='add_header_value_btn'  id='add_header_value_btn_" + child + "'>Add</button>").append("<br/>");	 
   };
@@ -179,23 +183,23 @@ function SelectText(element) {
 	 $("#http_method").val("POST");
 	 $("#endpoint").val("/v1/example/");
 	 // reqd params
-	 $("#rparams_1").val("R1");
+	 $("#rparams_1").val("Reqd1");
 	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
 	 $("#rparam_values_1").append("<option value='value2' >Value2</option>");
 	 $("#rparam_values_1").find('option').prop('selected', 'selected');
 	 $("#add_rparam").click();
-	 $("#rparams_2").val("R2");
+	 $("#rparams_2").val("Reqd2");
 	 $("#rparam_values_2").append("<option value='somevalue1' >somevalue1</option>");
 	 $("#rparam_values_2").append("<option value='somevalue2' >somevalue2</option>");
 	 $("#rparam_values_2").find('option').prop('selected', 'selected');
 	 
 	 // optional params
-	 $("#oparams_1").val("O1");
+	 $("#oparams_1").val("Option1");
 	 $("#oparam_values_1").append("<option value='value1'>value1</option>");
 	 $("#oparam_values_1").append("<option value='%$*#'>%$*#</option>");
 	 $("#oparam_values_1").find('option').prop('selected', 'selected');
 	 $("#add_oparam").click();
-	 $("#oparams_2").val("O2");
+	 $("#oparams_2").val("Option2");
 	 $("#oparam_values_2").append("<option value='badvalue1'>badvalue1</option>");
 	 $("#oparam_values_2").append("<option value='1000'>1000</option>");
 	 $("#oparam_values_2").find('option').prop('selected', 'selected');
