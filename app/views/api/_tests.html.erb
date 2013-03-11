@@ -18,6 +18,7 @@
         &lth:comment-expected-result&gt[Expected Result]&lt/h:comment-expected-result&gt
         &lth:query&gt
 	&lt![CDATA[	 
+	   xquery version "1.0-ml";
 	  <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
 	 let $payload := [PAYLOAD]
 	 return
@@ -54,8 +55,10 @@
            &lth:comment-expected-result&gt[Expected Result]&lt/h:comment-expected-result&gt
            &lth:query&gt
    	   &lt![CDATA[	 
-      	  <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>
+	     xquery version "1.0-ml";
+      	  <% if ((@method[:method] == "POST") ||  (@method[:method] == "PUT")) %>		
    	    let $payload := [PAYLOAD]
+		return
         <% end %>	 
 	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&") : r %>"),
 		     &ltoptions xmlns="xdmp:http"&gt
