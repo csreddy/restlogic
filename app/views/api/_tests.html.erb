@@ -1,4 +1,3 @@
-
 <div class="span10">
 	<div id="results"></div>Total Count:<span class="badge badge-success"><%= @r_output.size + @reqd_and_opt_results.size %></span><br>
 <!--	Required Params : <%=  @r.to_s %><br>
@@ -23,7 +22,7 @@
 	 let $payload := [PAYLOAD]
 	 return
      <% end %>	 
-	 xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%= o.gsub(" ", "&") %>"),
+	 xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%= o.gsub(" ", "&amp;") %>"),
 	     &ltoptions xmlns="xdmp:http"&gt
 	       &ltauthentication method="digest"&gt
 	         &ltusername&gtadmin&lt/username&gt
@@ -60,7 +59,7 @@
    	    let $payload := [PAYLOAD]
 		return
         <% end %>	 
-	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&") : r %>"),
+	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&amp;") : r %>"),
 		     &ltoptions xmlns="xdmp:http"&gt
 		       &ltauthentication method="digest"&gt
 		         &ltusername&gtadmin&lt/username&gt
