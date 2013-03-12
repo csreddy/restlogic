@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
 
-  
+ # returns combiations result 
   def home
     @endpoint = params[:endpoint]
     @method = params[:http]
@@ -12,14 +12,14 @@ class ApiController < ApplicationController
     @o_output = opt_params_only_result
     @r = get_reqd_params_and_values    
     @reqd_and_opt_results = reqd_and_opt_params_combination_results
-    logger.info " reqd_and_opt_results  = "+ @reqd_and_opt_results.to_s
+ #   logger.info " reqd_and_opt_results  = "+ @reqd_and_opt_results.to_s
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-
+# returns tests results
 def tests
   @endpoint = params[:endpoint]
   @method = params[:http]
@@ -41,7 +41,7 @@ end
 
   private
 
-  
+  # returns an array all reqd parameter names
   def get_reqd_param_names
     rparams = []
     i = 1
@@ -52,23 +52,24 @@ end
     rparams
   end
 
-
+# returns a hash of required param and their values
 def get_reqd_params_and_values 
-  logger.info "get_reqd_params_and_values----------------------"
+#  logger.info "get_reqd_params_and_values----------------------"
  values = {}
     i = 1
     while !params[:rparams_.to_s + "#{i}"].nil?
       if(!params[:rparams_.to_s + "#{i}"].empty?)
       value = params[:rparam_values_.to_s + "#{i}"]
-      logger.info "--------------"+params[:rparam_values_.to_s + "#{i}"].to_s
+   #   logger.info "--------------"+params[:rparam_values_.to_s + "#{i}"].to_s
       values[params[:rparams_.to_s + "#{i}"]] = value     
     end 
       i += 1
     end
-     logger.info "--------------"+values.to_s
+    # logger.info "--------------"+values.to_s
     values
 end 
 
+# returns an array of optional param names
   def get_opt_param_names
     oparams = []
     i = 1
@@ -79,6 +80,7 @@ end
     oparams
   end
 
+# returns a hash of optional param & their values
 def get_opt_params_and_values 
  values = {}
     i = 1
@@ -104,7 +106,8 @@ end
  #  end
  #  combinations
  #end  
-
+ 
+# returns a hash of reqd+optional parameter values combinations
   def reqd_and_opt_params_combination_results
     if @r_output.empty?
       @o_output
@@ -116,11 +119,11 @@ end
   end
 
 
-
+# returns an array of required param values combinations
  def reqd_params_only_result
     combinations = []
     reqd_params = get_reqd_params_and_values
-    logger.info "==============="+reqd_params.to_s
+   # logger.info "==============="+reqd_params.to_s
      reqd_params.each do |k, v|
        if(!v.nil? || k.empty?) 
          v.each do |i|
@@ -150,6 +153,7 @@ end
 #end
 #
 
+# returns on array combinations of values
 def variations(a)
   if !a.empty?
     first = a.first 
@@ -166,13 +170,13 @@ def variations(a)
   
 end
 
+#returns ar array of optional param values combinations
 def opt_params_only_result
   combinations = []
   final_list = []
   final_comb = []
   opt_param_values = get_opt_params_and_values 
   opt_params = get_opt_param_names
-   
  
     opt_param_values.each do |k, v|
       v.each do |i|
@@ -180,7 +184,6 @@ def opt_params_only_result
       end
       combinations << v
     end
-
 
 (1..combinations.size).each do |c|
   logger.info c.to_s
@@ -196,7 +199,7 @@ end
 end
 
 
-
+# performs progessive product on array of arrays
 def progressive_product(arrs)
   x, *xs = arrs
   (1..xs.count).map(&xs.method(:take)).map do |args|
@@ -218,6 +221,7 @@ header_values = {}
     header_values
 end
 
+# returns an array of headers
 def header_array
   hash = get_headers 
   arr = []
@@ -229,17 +233,7 @@ end
   arr
 end
 
-
 end
-
-
-
-
-
-
-
-
-
 
 
 
