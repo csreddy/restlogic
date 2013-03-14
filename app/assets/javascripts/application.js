@@ -78,7 +78,7 @@ $(".container").on("click", ".add_value_btn", function(event){
   var newValue = $(parent).find('.value_text_field').val();
   var values = $(parent).find('select');
 if(newValue.length !=0){
-	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
+	$(values).append("<option value='"+ escape(newValue) +"' >"+ newValue +"</option>");
       $(parent).find('select option').prop('selected', 'selected');
        $(parent).find('.value_text_field').val("");
 } 
@@ -90,7 +90,7 @@ $(".container").on("click", ".add_header_value_btn", function(event){
   var newValue = $(parent).find('.header_value_text_field').val();
   var values = $(parent).children('select').eq(1);
 if(newValue.length !=0){
-	$(values).append("<option value='"+ newValue +"' >"+ newValue +"</option>");
+	$(values).append("<option value='"+ escape(newValue) +"' >"+ newValue +"</option>");
       $(parent).children('select').eq(1).find('option').prop('selected', 'selected');
        $(parent).find('.header_value_text_field').val("");
 }

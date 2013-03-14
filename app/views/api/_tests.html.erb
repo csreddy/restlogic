@@ -59,7 +59,7 @@
    	    let $payload := [PAYLOAD]
 		return
         <% end %>	 
-	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", "<%=  r.kind_of?(Array) ? r.join(" ").gsub(" ", "&amp;") : r %>"),
+	    xdmp:http-<%=  @method[:method].downcase %>(fn:concat("<%= @endpoint %>?", fn:iri-to-uri("<%=  r.kind_of?(Array) ? r.join("&amp;") : r %>")),
 		     &ltoptions xmlns="xdmp:http"&gt
 		       &ltauthentication method="digest"&gt
 		         &ltusername&gtadmin&lt/username&gt

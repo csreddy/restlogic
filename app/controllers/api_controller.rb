@@ -59,7 +59,7 @@ def get_reqd_params_and_values
     i = 1
     while !params[:rparams_.to_s + "#{i}"].nil?
       if(!params[:rparams_.to_s + "#{i}"].empty?)
-      value = params[:rparam_values_.to_s + "#{i}"]
+      value = params[:rparam_values_.to_s + "#{i}"].map!{|i| CGI::unescape(i)}
    #   logger.info "--------------"+params[:rparam_values_.to_s + "#{i}"].to_s
       values[params[:rparams_.to_s + "#{i}"]] = value     
     end 
@@ -86,7 +86,7 @@ def get_opt_params_and_values
     i = 1
     while !params[:oparams_.to_s + "#{i}"].nil?
 	    if(!params[:oparams_.to_s + "#{i}"].empty?)
-      value = params[:oparam_values_.to_s + "#{i}"]
+      value = params[:oparam_values_.to_s + "#{i}"].map!{|i| CGI::unescape(i)}
       values[params[:oparams_.to_s + "#{i}"]] = value
     end
       i += 1
@@ -214,7 +214,7 @@ header_values = {}
     i = 1
   #  while !params[:header][:type_.to_s + "#{i}"].nil?
       while !params[:header_values_.to_s + "#{i}"].nil?
-	    value = params[:header_values_.to_s + "#{i}"]
+	    value = params[:header_values_.to_s + "#{i}"].map!{|i| CGI::unescape(i)}
     	header_values[params[:header][:type_.to_s + "#{i}"]] = value
       i += 1
     end
