@@ -136,18 +136,10 @@ function SelectText(element) {
  
  // load example1 endpoint params
  function example1(){
+	 formReset();
+	
 	 $("#http_method").val("GET");
 	 $("#endpoint").val("http://localhost:8003/v1/search/");
-	 // reqd params
-//	 $("#rparams_1").val("R1");
-//	 $("#rparam_values_1").append("<option value='value1' >Value1</option>");
-//	 $("#rparam_values_1").append("<option value='value2' >Value2</option>");
-//	 $("#rparam_values_1").find('option').prop('selected', 'selected');
-//	 $("#add_rparam").click();
-//	 $("#rparams_2").val("R2");
-//	 $("#rparam_values_2").append("<option value='value1' >Value1</option>");
-//	 $("#rparam_values_2").append("<option value='value2' >Value2</option>");
-//	 $("#rparam_values_2").find('option').prop('selected', 'selected');
 	 
 	 // optional params
 	 $("#oparams_1").val("q");
@@ -176,10 +168,12 @@ function SelectText(element) {
 	 $("#header_values_1").append("<option value='application/xml'>application/xml</option>");
 	 $("#header_values_1").append("<option value='application/text'>application/json</option>");
 	 $("#header_values_1").find('option').prop('selected', 'selected');
+	
  }
  
  
  function example2(){
+	 formReset();
 	 $("#http_method").val("POST");
 	 $("#endpoint").val("http://localhost:8003/v1/example/");
 	 // reqd params
@@ -209,6 +203,37 @@ function SelectText(element) {
 	 $("#header_values_1").append("<option value='application/xml'>application/xml</option>");
 	 $("#header_values_1").append("<option value='application/text'>application/json</option>");
 	 $("#header_values_1").find('option').prop('selected', 'selected');
+ }
+ 
+ function formReset(){
+ 	$('input[type=text]').val("");
+	$('select').val("");
+	rparamDivCount = $('.rparam').length;
+	oparamDivCount = $('.oparam').length;
+	headerDivCount = $('.header').length;
+	while(rparamDivCount != 1){
+		$('.rparam')[1].remove();
+		rparamDivCount = $('.rparam').length;
+	}
+		while(oparamDivCount != 1){
+		$('.oparam')[1].remove();
+		oparamDivCount = $('.oparam').length;
+	}
+		while(headerDivCount != 1){
+		$('.header')[1].remove();
+		headerDivCount = $('.header').length;
+	}
+
+	$('select[id*="rparam_values_"] option').remove();
+    $('select[id*="oparam_values_"] option').remove();
+    $('select[id*="header_values_"] option').remove();
+  
+   $('select[id*="rparam_values_"]').append("<option value></option>");
+   $('select[id*="oparam_values_"]').append("<option value></option>");
+   $('select[id*="header_values_"]').append("<option value></option>");
+  
+  	$("#header_type_1").val("accept");
+
  }
  
  
