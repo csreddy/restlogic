@@ -225,14 +225,16 @@ function SelectText(element) {
 	}
 
 	$('select[id*="rparam_values_"] option').remove();
-    $('select[id*="oparam_values_"] option').remove();
-    $('select[id*="header_values_"] option').remove();
+        $('select[id*="oparam_values_"] option').remove();
+        $('select[id*="header_values_"] option').remove();
   
-   $('select[id*="rparam_values_"]').append("<option value></option>");
-   $('select[id*="oparam_values_"]').append("<option value></option>");
-   $('select[id*="header_values_"]').append("<option value></option>");
-  
+        $('select[id*="rparam_values_"]').append("<option value></option>");
+        $('select[id*="oparam_values_"]').append("<option value></option>");
+        $('select[id*="header_values_"]').append("<option value></option>");
   	$("#header_type_1").val("accept");
+  	$("#results").html("");
+        $("#copy").hide();
+
 
  }
  
