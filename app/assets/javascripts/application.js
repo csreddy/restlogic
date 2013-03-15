@@ -212,15 +212,15 @@ function SelectText(element) {
 	oparamDivCount = $('.oparam').length;
 	headerDivCount = $('.header').length;
 	while(rparamDivCount != 1){
-		$('.rparam')[1].remove();
+		$('.rparam').last().remove();
 		rparamDivCount = $('.rparam').length;
 	}
 		while(oparamDivCount != 1){
-		$('.oparam')[1].remove();
+		$('.oparam').last().remove();
 		oparamDivCount = $('.oparam').length;
 	}
 		while(headerDivCount != 1){
-		$('.header')[1].remove();
+		$('.header').last().remove();
 		headerDivCount = $('.header').length;
 	}
 
