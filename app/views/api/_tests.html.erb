@@ -10,7 +10,11 @@
 <pre>
 	 <% @r_output.each do |o| %>
 	 <% header_field = @header_fields.keys[rand(@header_fields.keys.size)] %>
-	 <% header_value = @header_fields[header_field.to_s][rand(@header_fields[header_field.to_s].size)] %>
+	<%  if @header_fields[header_field.to_s].nil? then %>
+		<% header_value = "" %>
+		<% else %>
+		 <% header_value = @header_fields[header_field.to_s][rand(@header_fields[header_field.to_s].size)] %>
+   	 		<% end %>
    	 
       &lth:test h:output-result="true"&gt
       &lth:name>test-<%= @r_output.index(o)+1 %>&lt/h:name&gt
@@ -47,8 +51,12 @@
 	<pre>
 		 <% @reqd_and_opt_results.each do |r| %>
 		 <% header_field = @header_fields.keys[rand(@header_fields.keys.size)] %>
+		<%  if @header_fields[header_field.to_s].nil? then %>
+		<% header_value = "" %>
+		<% else %>
 		 <% header_value = @header_fields[header_field.to_s][rand(@header_fields[header_field.to_s].size)] %>
-   	 
+   	 		<% end %>
+
          &lth:test h:output-result="true"&gt
          &lth:name>test-<%=  @reqd_and_opt_results.index(r)+1 %>&lt/h:name&gt
            &lth:comment-expected-result&gt[Expected Result]&lt/h:comment-expected-result&gt

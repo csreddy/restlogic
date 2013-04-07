@@ -239,13 +239,23 @@ function SelectText(element) {
  }
  
  
-// $(document).ajaxSend(function(r, s) {
-//     $("#wait").show();
-//     $('#myModal').modal('show');
-// 
-// 	});
-//
-// $(document).ajaxStop(function(r, s) {
-//     $("#wait").fadeOut("fast");
-//    $('#myModal').modal('hide');
-// });
+$(document).ajaxSend(function(r, s) {
+    $("#wait").show();
+    $('#myModal').modal('show');  
+	});
+
+$(document).ajaxStop(function(r, s) {
+    $("#wait").fadeOut("fast");
+   $('#myModal').modal('hide');
+});
+
+
+
+
+
+
+
+
+
+
+
