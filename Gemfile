@@ -39,7 +39,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'mysql2'
+#gem 'mysql2'
 gem 'simple_form'
 gem 'hirb'
 gem 'gravtastic'
@@ -66,3 +66,4 @@ group :development do
 end
 gem "awesome_print"
 gem "google_visualr", "~> 2.1.0"
+gem 'rails_12factor', group: :production
