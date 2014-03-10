@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: db/myorg_development
+  database: db/reslogic_development
   pool: 5
   timeout: 5000
   username: creddy
@@ -18,7 +18,7 @@ development:
 test:
  adapter: postgresql
  encoding: unicode
- database: db/myorg_development
+ database: db/restlogic_development
  pool: 5
  timeout: 5000
  username: creddy
