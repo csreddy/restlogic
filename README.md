@@ -4,5 +4,6 @@ Generates all possible combinations of required and optional parameter values an
 ##### Setup
 + clone the project
 + cd to project dir
++ run ```bundle install```
 + run ```script/rails server```
 + Thats it!
